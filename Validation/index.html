@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation2 - Javascript</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <form action="/style" method="POST" class="form" id="form-1">
+            <h3 class="heading">Đăng Nhập</h3>
+            <p class="desc">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
+            <div class="spacer"></div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Giới tính: </label>
+                <div class="d-flex">
+                    <div class="gender-box d-flex">
+                        <label for="male">Nam</label>
+                        <input id="male" name="gender" value="male" type="checkbox">
+                    </div>
+                    <div class="gender-box d-flex">
+                        <label for="female">Nữ</label>
+                        <input id="female" name="gender" value="female" type="checkbox">
+                    </div>
+                    <div class="gender-box d-flex">
+                        <label for="other">Khác</label>
+                        <input id="other" name="gender" value="other" type="checkbox">
+                    </div>
+                </div>
+                <span class="form-message"></span>
+            </div>
+            <button class="form-submit">Đăng Nhập</button>
+        </form>
+    </div>
+    <script src="main.js"></script>
+    <script>
+    Validator({
+        form: '#form-1',
+        formGroupSelector: '.form-group',
+        selectorMessage: '.form-message',
+        rules: [
+            // Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ!'),
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email', 'Trường này phải là email!'),
+            Validator.minLength('#password', 6, `Vui lòng nhâp mật khẩu có độ dài 6 ký tự!`),
+            // Validator.isRequired('[name=\'gender\']'),
+            // Validator.isRequired('#password_confirmation'),
+            // Validator.ref('#password_confirmation', () => {
+            //     return document.querySelector('#password').value
+            // }),
+        ],
+        onSubmit: (data) => {
+            // call API
+            console.log(data)
+        }
+    })
+    </script>
+</body>
+
+</html>
